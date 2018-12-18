@@ -72,10 +72,10 @@ public class DetailFragment extends Fragment implements GithubUserAdapter.Listen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
         ButterKnife.bind(this, view);
-
 
         Bundle bundle = getArguments();
         GithubUser user = (GithubUser) bundle.getSerializable("userSelected");
@@ -86,7 +86,37 @@ public class DetailFragment extends Fragment implements GithubUserAdapter.Listen
             public void onResponse(Call<List<GithubUser>> call, Response<List<GithubUser>> response) {
                 if (response.isSuccessful()){
                     Log.d("sizeoflist", response.body().size() + "");
+                    followingTextView.setText(response.body().size() + "");
 
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GithubUser>> call, Throwable t) {
+
+            }
+        });
+
+        restAdapter.getGithubService().getFollowers(user.getLogin()).enqueue(new Callback<List<GithubUser>>() {
+            @Override
+            public void onResponse(Call<List<GithubUser>> call, Response<List<GithubUser>> response) {
+                if (response.isSuccessful()){
+                    followersTextView.setText(response.body().size() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GithubUser>> call, Throwable t) {
+                followersTextView.setText(t.getLocalizedMessage());
+
+            }
+        });
+
+        restAdapter.getGithubService().getRepos(user.getLogin()).enqueue(new Callback<List<GithubUser>>() {
+            @Override
+            public void onResponse(Call<List<GithubUser>> call, Response<List<GithubUser>> response) {
+                if  (response.isSuccessful()){
+                    repoTextView.setText(response.body().size() + "");
                 }
             }
 
@@ -100,7 +130,7 @@ public class DetailFragment extends Fragment implements GithubUserAdapter.Listen
         assert user != null;
         usernameTextView.setText(user.getLogin());
 
-        Picasso.with(getContext()).load(user.getAvatarUrl()).into(profileImageView);
+        Picasso.get().load(user.getAvatarUrl()).into(profileImageView);
         this.executeHttpRequestWithRetrofit();
 
 
