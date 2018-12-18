@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controllers.Fragments.DetailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"
+            android:id="@+id/profileImageView"
+            android:layout_centerHorizontal="true"
+            android:gravity="top"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/usernameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profileImageView"
+            android:layout_centerHorizontal="true"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/titleLinearLayout"
+            android:layout_marginTop="350dp">
+
+            <TextView
+                android:id="@+id/followingTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="following"
+                tools:ignore="HardcodedText"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/followersTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="followers"
+                tools:ignore="HardcodedText"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/repositoriesTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="repositories"
+                tools:ignore="HardcodedText"
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/titleLinearLayout"
+            android:layout_marginTop="60dp">
+
+            <TextView
+                android:id="@+id/followingNumberTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="followin123g"
+                tools:ignore="HardcodedText"
+                android:textColor="#000"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/followersNumberTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="HI"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/repositoriesNumberTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="repoNumber"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
