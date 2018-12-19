@@ -35,9 +35,15 @@ public class GithubUser implements Serializable {
     @SerializedName("html_url")
     @Expose
     private String htmlUrl;
-    @SerializedName("followers_url")
+    @SerializedName("followers")
     @Expose
-    private String followersUrl;
+    private int followers;
+    @SerializedName("following")
+    @Expose
+    private int following;
+    @SerializedName("public_repos")
+    @Expose
+    private int repos;
     @SerializedName("following_url")
     @Expose
     private String followingUrl;
@@ -117,12 +123,28 @@ public class GithubUser implements Serializable {
         this.htmlUrl = htmlUrl;
     }
 
-    public String getFollowersUrl() {
-        return followersUrl;
+    public int getFollowers() {
+        return followers;
     }
 
-    public void setFollowersUrl(String followersUrl) {
-        this.followersUrl = followersUrl;
+    public void setFollowers(int followers) {
+        this.followers = followers;
+    }
+
+    public int getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(int following) {
+        this.following = following;
+    }
+
+    public int getRepos() {
+        return repos;
+    }
+
+    public void setRepos(int repos) {
+        this.repos = repos;
     }
 
     public String getFollowingUrl() {
@@ -204,5 +226,7 @@ public class GithubUser implements Serializable {
     public void setSiteAdmin(Boolean siteAdmin) {
         this.siteAdmin = siteAdmin;
     }
-
 }
+
+
+

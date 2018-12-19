@@ -73,9 +73,10 @@
                 android:id="@+id/followingNumberTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="followin123g"
+                android:text="Loading..."
                 tools:ignore="HardcodedText"
                 android:textColor="#000"
+                android:textStyle="bold"
                 android:layout_weight="1"
                 android:gravity="center"/>
 
@@ -84,14 +85,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="HI"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:text="Loading..."
                 android:gravity="center"/>
 
             <TextView
                 android:id="@+id/repositoriesNumberTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="repoNumber"
+                android:text="Loading..."
+                android:textColor="#000"
+                android:textStyle="bold"
                 android:layout_weight="1"
                 android:gravity="center"/>
 

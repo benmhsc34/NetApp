@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -81,51 +82,22 @@ public class DetailFragment extends Fragment implements GithubUserAdapter.Listen
         GithubUser user = (GithubUser) bundle.getSerializable("userSelected");
 
         RESTAdapter restAdapter = new RESTAdapter();
-        restAdapter.getGithubService().gettFollowing(user.getLogin()).enqueue(new Callback<List<GithubUser>>() {
+        restAdapter.getGithubService().getUsers(user.getLogin()).enqueue(new Callback<GithubUser>() {
             @Override
-            public void onResponse(Call<List<GithubUser>> call, Response<List<GithubUser>> response) {
+            public void onResponse(Call<GithubUser> call, Response<GithubUser> response) {
                 if (response.isSuccessful()){
-                    Log.d("sizeoflist", response.body().size() + "");
-                    followingTextView.setText(response.body().size() + "");
+                    followingTextView.setText(response.body().getFollowing() + "");
+                    followersTextView.setText(response.body().getFollowers() + "");
+                    repoTextView.setText(response.body().getRepos() + "");
 
                 }
             }
 
             @Override
-            public void onFailure(Call<List<GithubUser>> call, Throwable t) {
+            public void onFailure(Call<GithubUser> call, Throwable t) {
 
             }
         });
-
-        restAdapter.getGithubService().getFollowers(user.getLogin()).enqueue(new Callback<List<GithubUser>>() {
-            @Override
-            public void onResponse(Call<List<GithubUser>> call, Response<List<GithubUser>> response) {
-                if (response.isSuccessful()){
-                    followersTextView.setText(response.body().size() + "");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<GithubUser>> call, Throwable t) {
-                followersTextView.setText(t.getLocalizedMessage());
-
-            }
-        });
-
-        restAdapter.getGithubService().getRepos(user.getLogin()).enqueue(new Callback<List<GithubUser>>() {
-            @Override
-            public void onResponse(Call<List<GithubUser>> call, Response<List<GithubUser>> response) {
-                if  (response.isSuccessful()){
-                    repoTextView.setText(response.body().size() + "");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<GithubUser>> call, Throwable t) {
-
-            }
-        });
-
 
         assert user != null;
         usernameTextView.setText(user.getLogin());
@@ -170,6 +142,7 @@ public class DetailFragment extends Fragment implements GithubUserAdapter.Listen
         updateUIWhenStopingHTTPRequest(stringBuilder.toString());
         Log.d("mhsc", stringBuilder.toString());
     }
+
 
 
     private void updateUIWhenStopingHTTPRequest(String response) {

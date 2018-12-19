@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.openclassrooms.netapp.Controllers.Fragments.DetailFragment;
 import com.openclassrooms.netapp.Models.GithubUser;
@@ -31,7 +32,16 @@ public class DetailActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.activity_detail_frame_layout, detailFragment).commit();
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+        }
+
+
+        return true;
+    }
 }
-// -------------------
-// CONFIGURATION
-// -------------------
+

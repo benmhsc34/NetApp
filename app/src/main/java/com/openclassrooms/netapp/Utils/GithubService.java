@@ -22,15 +22,9 @@ public interface GithubService {
     @GET("users/{username}/following")
     Observable<List<GithubUser>> getFollowing(@Path("username") String username);
 
-    @GET("users/{username}/following")
-    Call<List<GithubUser>> gettFollowing(@Path("username") String username);
+    @GET("users/{username}")
+    Call<GithubUser> getUsers(@Path("username") String username);
 
-
-    @GET("users/{username}/followers")
-    Call<List<GithubUser>> getFollowers(@Path("username") String username);
-
-    @GET("users/{username}/repos")
-    Call<List<GithubUser>> getRepos(@Path("username") String username);
 
     @GET("users/{username}")
     Observable<GithubUserInfo> getUserInfos(@Path("username") String username);
